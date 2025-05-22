@@ -55,9 +55,11 @@ function AppWrapper() {
 
   return (
     <div className="relative min-h-screen bg-pink-100 p-4">
+      <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/clinica-estetica-d68bb.firebasestorage.app/o/logo.png?alt=media&token=1ad8165d-daba-410b-982a-d2aebb00fcf0" type="image/png" />
+
       <div className="flex justify-between items-start z-50 relative">
         <img
-          src="/logo.png"
+          src="https://firebasestorage.googleapis.com/v0/b/clinica-estetica-d68bb.firebasestorage.app/o/logo.png?alt=media&token=1ad8165d-daba-410b-982a-d2aebb00fcf0"
           alt="Logo"
           className="w-48 h-48 object-contain"
         />
