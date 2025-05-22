@@ -70,46 +70,46 @@ function AppWrapper() {
       />
 
       {/* Topo com logo principal e ícones ao lado */}
-      <div className="fixed top-0 left-0 right-0 flex items-center justify-between p-4 bg-pink-100 z-50 shadow-md">
-        <div className="flex items-center">
-          {/* Logo principal */}
-          <img
-            src={logoPrincipal}
-            alt="Logo"
-            className="w-48 h-48"
-          />
+      <div className="fixed top-0 left-0 right-0 flex items-center justify-between p-4 bg-pink-100 z-50 shadow-md flex-wrap gap-4">
+  <div className="flex items-center gap-4 sm:gap-6 flex-shrink-0">
+    {/* Logo principal responsiva */}
+    <img
+      src={logoPrincipal}
+      alt="Logo"
+      className="w-24 h-24 sm:w-48 sm:h-48 object-contain"
+    />
 
-          {/* Ícones do Instagram e WhatsApp */}
-          <div className="flex items-center gap-4">
-            <a
-              href={instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="hover:opacity-80 transition-opacity"
-            >
-              <img
-                src={instagramLogo}
-                alt="Instagram"
-                className="w-16 h-16"
-              />
-            </a>
+    {/* Ícones do Instagram e WhatsApp */}
+    <div className="flex items-center gap-2 sm:gap-4">
+      <a
+        href={instagramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+        className="hover:opacity-80 transition-opacity"
+      >
+        <img
+          src={instagramLogo}
+          alt="Instagram"
+          className="w-8 h-8 sm:w-16 sm:h-16 object-contain"
+        />
+      </a>
 
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="hover:opacity-80 transition-opacity"
-            >
-              <img
-                src={whatsappLogo}
-                alt="WhatsApp"
-                className="w-12 h-12"
-              />
-            </a>
-          </div>
-        </div>
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        className="hover:opacity-80 transition-opacity"
+      >
+        <img
+          src={whatsappLogo}
+          alt="WhatsApp"
+          className="w-8 h-8 sm:w-12 sm:h-12 object-contain"
+        />
+      </a>
+    </div>
+  </div>
 
         {/* Link para Admin no canto superior direito */}
         <Link
