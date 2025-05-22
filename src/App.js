@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Agendamento from './components/Agendamento';
 import Admin from './components/Admin';
 import { db } from './firebase';
@@ -10,7 +10,6 @@ function AppWrapper() {
   const [nome, setNome] = useState('');
   const [etapa, setEtapa] = useState('telefone');
 
-  const navigate = useNavigate();
 
   const formatarTelefone = (numero) => {
     return `(${numero.slice(0, 2)}) ${numero.slice(2, 7)}-${numero.slice(7)}`;
