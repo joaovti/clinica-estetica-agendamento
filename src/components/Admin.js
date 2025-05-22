@@ -84,17 +84,41 @@ const Admin = () => {
   };
 
   // Função para autenticação
-  const handleLogin = () => {
-    const usuarioFixo = 'admin';
-    const senhaFixa = 'teste123';
+  const handleLogin = async () => {
+    if (!usuarioAdmin.trim() || !senhaAdmin.trim()) {
+      setErroLogin('Usuário e senha são obrigatórios');
+      return;
+    }
 
-    if (usuarioAdmin === usuarioFixo && senhaAdmin === senhaFixa) {
-      setAutenticado(true);
-      setUsuarioAdmin('');
-      setSenhaAdmin('');
-      setErroLogin('');
-    } else {
-      setErroLogin('Usuário ou senha incorretos');
+    try {
+      const adminsRef = collection(db, 'admins');
+      const q = query(adminsRef, where('user', '==', usuarioAdmin.trim()));
+      const snapshot = await getDocs(q);
+
+      if (snapshot.empty) {
+        setErroLogin('Usuário ou senha incorretos');
+        return;
+      }
+
+      let autenticado = false;
+      snapshot.forEach((doc) => {
+        const dados = doc.data();
+        if (dados.senha === senhaAdmin.trim()) {
+          autenticado = true;
+        }
+      });
+
+      if (autenticado) {
+        setAutenticado(true);
+        setUsuarioAdmin('');
+        setSenhaAdmin('');
+        setErroLogin('');
+      } else {
+        setErroLogin('Usuário ou senha incorretos');
+      }
+    } catch (error) {
+      console.error('Erro ao autenticar:', error);
+      setErroLogin('Erro ao autenticar. Tente novamente mais tarde.');
     }
   };
 
