@@ -10,7 +10,6 @@ function AppWrapper() {
   const [nome, setNome] = useState('');
   const [etapa, setEtapa] = useState('telefone');
 
-
   const formatarTelefone = (numero) => {
     return `(${numero.slice(0, 2)}) ${numero.slice(2, 7)}-${numero.slice(7)}`;
   };
@@ -53,27 +52,81 @@ function AppWrapper() {
     setEtapa('agendamento');
   };
 
+  // Links dos perfis
+  const instagramUrl = "https://www.instagram.com/jessica_morenomanicure";
+  const whatsappNumber = "5511964304245";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+
+  const instagramLogo = "https://firebasestorage.googleapis.com/v0/b/clinica-estetica-d68bb.firebasestorage.app/o/ig.png?alt=media&token=eaba9416-aac8-4a55-92e4-9c1def20267a";
+  const whatsappLogo = "https://firebasestorage.googleapis.com/v0/b/clinica-estetica-d68bb.firebasestorage.app/o/wp.png?alt=media&token=579a1695-166c-4f39-850f-ed60aea68795";
+  const logoPrincipal = "https://firebasestorage.googleapis.com/v0/b/clinica-estetica-d68bb.firebasestorage.app/o/logo.png?alt=media&token=1ad8165d-daba-410b-982a-d2aebb00fcf0";
+
   return (
     <div className="relative min-h-screen bg-pink-100 p-4">
-      <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/clinica-estetica-d68bb.firebasestorage.app/o/logo.png?alt=media&token=1ad8165d-daba-410b-982a-d2aebb00fcf0" type="image/png" />
+      <link
+        rel="icon"
+        href={logoPrincipal}
+        type="image/png"
+      />
 
-      <div className="flex justify-between items-start z-50 relative">
-        <img
-          src="https://firebasestorage.googleapis.com/v0/b/clinica-estetica-d68bb.firebasestorage.app/o/logo.png?alt=media&token=1ad8165d-daba-410b-982a-d2aebb00fcf0"
-          alt="Logo"
-          className="w-48 h-48 object-contain"
-        />
+      {/* Topo com logo principal e ícones ao lado */}
+      <div className="fixed top-0 left-0 right-0 flex items-center justify-between p-4 bg-pink-100 z-50 shadow-md">
+        <div className="flex items-center">
+          {/* Logo principal */}
+          <img
+            src={logoPrincipal}
+            alt="Logo"
+            className="w-48 h-48"
+          />
+
+          {/* Ícones do Instagram e WhatsApp */}
+          <div className="flex items-center gap-4">
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img
+                src={instagramLogo}
+                alt="Instagram"
+                className="w-16 h-16"
+              />
+            </a>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="hover:opacity-80 transition-opacity"
+            >
+              <img
+                src={whatsappLogo}
+                alt="WhatsApp"
+                className="w-12 h-12"
+              />
+            </a>
+          </div>
+        </div>
+
+        {/* Link para Admin no canto superior direito */}
         <Link
           to="/admin"
-          className="text-sm text-blue-600 underline mt-4 mr-4"
+          className="text-sm text-blue-600"
         >
           Acesso Administrador
         </Link>
       </div>
 
+      {/* Espaço para evitar que conteúdo fique atrás do topo fixo */}
+      <div className="h-[13rem]" />
+
+      {/* Modal de cadastro */}
       {etapa !== 'agendamento' && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-40">
-          <div className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md">
+        <div className="fixed inset-0 bg-pink-100 flex justify-center items-center z-40">
+           <div className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md">   
             {etapa === 'telefone' && (
               <div className="space-y-4">
                 <h2 className="text-xl font-semibold">Digite seu telefone:</h2>
@@ -116,6 +169,7 @@ function AppWrapper() {
         </div>
       )}
 
+      {/* Componente agendamento */}
       {etapa === 'agendamento' && <Agendamento nome={nome} />}
     </div>
   );
